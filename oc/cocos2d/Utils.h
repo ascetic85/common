@@ -10,11 +10,21 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#define gUtils [Utils sharedUtils]
+
 @interface Utils : NSObject {
+@private
+	NSString *m_platform;
 }
 
-+(NSString*) lang;
++(Utils*) sharedUtils;
 
-+(NSString*) countryCode;
+-(NSString*) lang;
+
+-(NSString*) countryCode;
+
+-(NSString*) platform;
+
+-(NSString*) platformString;
 
 @end
