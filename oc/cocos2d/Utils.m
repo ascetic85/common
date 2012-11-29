@@ -51,23 +51,24 @@
 // www.diwublog.com/archives/119
 - (NSString*) platform
 {
+	if (m_platform) return m_platform;
+
     size_t size;
     
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
     char *machine = malloc(size);
     
     sysctlbyname("hw.machine", machine, &size, NULL, 0);
-    NSString *platform = [NSString stringWithUTF8String:machine];
-    
+    m_platform = [[NSString stringWithUTF8String:machine] retain];
     free(machine);
     
-    return platform;
+    return m_platform;
 }
 
 // www.diwublog.com/archives/209
 - (NSString*) platformString
 {
-    NSString *platform = [Utils platform];
+    NSString *platform = [self platform];
     
 //    NSLog(@"The platform is %@", platform);
     
